@@ -26,6 +26,11 @@ theme: /
         state: Listen
             q: *
             script:
+                log("================================");
+                log($secrets.get("ALISA_CHANNEL_TYPE"));
+                log($secrets.get("ALISA_BOT_ID"));
+                log($secrets.get("ALISA_USER_ID"));
+            
                 var toSendRightNowTime = "2022-07-02T10:00:00";
                 $pushgate.createEvent(toSendRightNowTime, "DanilaSay", 
                     {"sayData": $request.query}, 
