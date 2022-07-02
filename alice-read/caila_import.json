@@ -1,7 +1,7 @@
 {
   "project" : {
-    "id" : "test_http-6035183-Cbo",
-    "name" : "test_http-6035183-Cbo",
+    "id" : "alice-1004467-skd",
+    "name" : "alice-1004467-skd",
     "folder" : "/jaicp"
   },
   "settings" : {
@@ -10,11 +10,30 @@
     "classificationAlgorithm" : "sts",
     "timezone" : "UTC",
     "extendedSettings" : {
+      "tokenizerEngine" : "mystem",
       "useShared" : false
     },
     "shared" : false
   },
-  "intents" : [ ],
+  "intents" : [ {
+    "id" : 2245,
+    "path" : "/пока",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "пока"
+    } ],
+    "priority" : 0
+  }, {
+    "id" : 2246,
+    "path" : "/привет",
+    "enabled" : true,
+    "shared" : false,
+    "phrases" : [ {
+      "text" : "привет"
+    } ],
+    "priority" : 0
+  } ],
   "entities" : [ ],
   "enabledSystemEntities" : [ "duckling.number", "duckling.time", "duckling.duration", "duckling.phone-number", "duckling.email", "duckling.url" ],
   "spellerDictionary" : [ ],
@@ -65,48 +84,52 @@
     "enabled" : false
   }, {
     "name" : "duckling.number",
-    "version" : "v1",
+    "version" : "v2",
     "enabled" : true
   }, {
     "name" : "duckling.ordinal",
-    "version" : "v1",
+    "version" : "v2",
     "enabled" : false
   }, {
     "name" : "duckling.amount-of-money",
-    "version" : "v1",
+    "version" : "v2",
     "enabled" : false
   }, {
     "name" : "duckling.distance",
-    "version" : "v1",
+    "version" : "v2",
     "enabled" : false
   }, {
     "name" : "duckling.time",
-    "version" : "v1",
+    "version" : "v2",
     "enabled" : true
   }, {
     "name" : "duckling.date",
-    "version" : "v1",
+    "version" : "v2",
     "enabled" : false
   }, {
     "name" : "duckling.time-of-day",
-    "version" : "v1",
+    "version" : "v2",
     "enabled" : false
   }, {
     "name" : "duckling.duration",
-    "version" : "v1",
+    "version" : "v2",
     "enabled" : true
   }, {
     "name" : "duckling.phone-number",
-    "version" : "v1",
+    "version" : "v2",
     "enabled" : true
   }, {
     "name" : "duckling.email",
-    "version" : "v1",
+    "version" : "v2",
     "enabled" : true
   }, {
     "name" : "duckling.url",
-    "version" : "v1",
+    "version" : "v2",
     "enabled" : true
+  }, {
+    "name" : "duckling.interval",
+    "version" : "v2",
+    "enabled" : false
   }, {
     "name" : "mlps-obscene.obscene",
     "enabled" : false
