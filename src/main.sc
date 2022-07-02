@@ -2,28 +2,31 @@ theme: /
 
     state: BabushkaSay
         q!: $regex</start>
+        script:
+            log("======================");
+            log(JSON.stringify($request));
         go!: /GetNewDataForBabushka
         
         
     state: DanilaSay
         event: DanilaSay
         script: 
-            var danilaSay = $request.rawRequest.eventData.sayData;
+            var danilSay = $request.rawRequest.eventData.sayData;
             
-            $client.danilaAnswers = $client.danilaAnswers || [];
-            $client.danilaAnswers.push(danilaSay);
+            $client.danilAnswers = $client.danilAnswers || [];
+            $client.danilAnswers.push(danilSay);
         
         
     state: GetNewDataForBabushka
         event!: noMatch
         script:
-            var danilaAnswers = $client.danilaAnswers || [];
-            if (danilaAnswers.length === 0) {
+            var danilAnswers = $client.danilAnswers || [];
+            if (danilAnswers.length === 0) {
                 $reactions.answer("Данил еще не успел ответить");
             } else {
                 $reactions.answer("Данил говорит");
-                for (var i = 0; i < danilaAnswers.length; i++) {
-                    $reactions.answer(danilaAnswers[i]);
+                for (var i = 0; i < danilAnswers.length; i++) {
+                    $reactions.answer(danilAnswers[i]);
                 }
                     
             }
