@@ -12,8 +12,6 @@ theme: /
     state: Start
         q!: $regex</start>
         a: Вот, что ты можешь:
-        script:
-            log(JSON.stringify($request));
         buttons:
             "Ответить бабушке" -> /AnswerToBabushka
         
