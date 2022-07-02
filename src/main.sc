@@ -3,7 +3,7 @@ theme: /
     init:
         bind("preMatch", function($context) {
             var currentUser = $context.request.channelUserId;
-            var correctUser = $env.get("CORRECT_TLGRM_USER_ID");
+            var correctUser = $secrets.get("CORRECT_TLGRM_USER_ID");
             if (currentUser !== correctUser) {
                 $reactions.answer("Illegal user");
                 throw new Error("Illegal user");  
@@ -32,9 +32,9 @@ theme: /
                 var toSendRightNowTime = "2022-07-02T10:00:00";
                 $pushgate.createEvent(toSendRightNowTime, "DanilaSay", 
                     {"sayData": $request.query}, 
-                    $env.get("ALISA_CHANNEL_TYPE"),
-                    $env.get("ALISA_BOT_ID"),
-                    $env.get("ALISA_USER_ID"));
+                    $secrets.get("ALISA_CHANNEL_TYPE"),
+                    $secrets.get("ALISA_BOT_ID"),
+                    $secrets.get("ALISA_USER_ID"));
                 $reactions.answer("Отправлено");
 
     state: NoMatch
