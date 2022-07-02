@@ -5,8 +5,9 @@ theme: /
             var currentUser = $context.request.channelUserId;
             var correctUser = $secrets.get("CORRECT_TLGRM_USER_ID");
             if (currentUser !== correctUser) {
-                $reactions.answer("Illegal user");
-                throw new Error("Illegal user");  
+                $reactions.anwer(currentUser);
+                $reactions.anwer(correctUser);
+                //throw new Error("Illegal user");  
             }
         });
 
