@@ -11,6 +11,8 @@ theme: /
     state: DanilaSay
         event: DanilaSay
         script: 
+            log("++++++++++++++++++++++++++++=");
+            log(JSON.stringify($request.rawRequest));
             var danilSay = $request.rawRequest.eventData.sayData;
             
             $client.danilAnswers = $client.danilAnswers || [];
@@ -20,6 +22,8 @@ theme: /
     state: GetNewDataForBabushka
         event!: noMatch
         script:
+            log("======================");
+            log(JSON.stringify($request));
             var danilAnswers = $client.danilAnswers || [];
             if (danilAnswers.length === 0) {
                 $reactions.answer("Данил еще не успел ответить");
