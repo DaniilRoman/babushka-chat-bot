@@ -2,8 +2,6 @@ theme: /
 
     state: BabushkaSay
         q!: $regex</start>
-        script: 
-            log(JSON.stringify($request));
         go!: /GetNewDataForBabushka
         
         
