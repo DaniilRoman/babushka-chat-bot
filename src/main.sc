@@ -25,6 +25,7 @@ theme: /
             } else {
                 $reactions.answer("Данил говорит");
                 $reactions.answer(danilAnswers);
+                $session.sayData = "";
             }
         GoogleSheets:
             operationType = writeDataToCells
