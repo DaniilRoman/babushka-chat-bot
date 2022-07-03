@@ -21,6 +21,14 @@ theme: /
                 var answers = danilAnswers[0]["value"];
                 $reactions.answer(answers)
             }
+            
+            $integration.googleSheets.writeDataToCells(
+                $secrets.get("INTEGRATION_ID"),
+                $secrets.get("SPREADSHEET_ID"),
+                "Лист1",
+                [{values: ["Николаевич", "78121770707"], cell: "C4"}]
+            );
+            
         GoogleSheets:
             operationType = writeDataToCells
             integrationId = {{ $secrets.get("INTEGRATION_ID") }}
