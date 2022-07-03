@@ -13,3 +13,5 @@ Bot sources:
 1. Telegram bot located in `branch tlgrm`
 2. Alisa bot to send messages located in `branch alisa-send`
 3. Alisa bot to read messages from Google sheets located in `branch alisa-read`
+
+![image](./files/arch.png)
