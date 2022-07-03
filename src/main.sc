@@ -25,19 +25,30 @@ theme: /
     state: AnswerToBabushka
         state: Listen
             q: *
+            GoogleSheets:
+                operationType = readDataFromCells
+                integrationId = {{ $secrets.get("INTEGRATION_ID") }}
+                spreadsheetId = {{ $secrets.get("SPREADSHEET_ID") }}
+                sheetName = Лист1
+                body = [{"varName":"sayData","cell":"A1"}]
+                errorState = /AnswerToBabushka/Error
             script:
-                log("================================");
-                log($secrets.get("ALISA_CHANNEL_TYPE"));
-                log($secrets.get("ALISA_BOT_ID"));
-                log($secrets.get("ALISA_USER_ID"));
-            
-                var toSendRightNowTime = "2022-07-02T10:00:00";
-                $pushgate.createEvent(toSendRightNowTime, "DanilaSay", 
-                    {"sayData": $request.query}, 
-                    $secrets.get("ALISA_CHANNEL_TYPE"),
-                    $secrets.get("ALISA_BOT_ID"),
-                    $secrets.get("ALISA_USER_ID"));
+                $reactions.answer($session.sayData);
+                $session.tmpSheetsValue = $session.sayData + $request.query + ". ";
+            GoogleSheets:
+                operationType = writeDataToCells
+                integrationId = {{ $secrets.get("INTEGRATION_ID") }}
+                spreadsheetId = {{ $secrets.get("SPREADSHEET_ID") }}
+                sheetName = Лист1
+                body = [{"values": "{{$session.tmpSheetsValue}}","cell":"A1"}]
+                errorState = /AnswerToBabushka/Error1
+            script:
                 $reactions.answer("Отправлено");
+              
+        state: Error
+            a: Cannot interact with Google sheets
+
+            
 
     state: NoMatch
         event!: noMatch
