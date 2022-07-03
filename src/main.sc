@@ -33,7 +33,7 @@ theme: /
                 body = [{"varName":"sayData","cell":"A1"}]
                 errorState = /AnswerToBabushka/Error
             script:
-                if ($session.sayData === "underfined" || typeof $session.sayData === 'underfined' || $session.sayData === null) {
+                if ($session.sayData === "undefined" || typeof $session.sayData === 'undefined' || $session.sayData === null) {
                     $session.sayData = ""
                 }
                 $session.tmpSheetsValue = $session.sayData + $request.query + ". ";
