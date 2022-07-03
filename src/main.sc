@@ -16,13 +16,9 @@ theme: /
             errorState = /GoogleSheetError
         script:
             var danilAnswers = $session.sayData;
-            if (danilAnswers === "underfined" || typeof danilAnswers === 'underfined' || danilAnswers === null) {
+            if (danilAnswers === "undefined" || typeof danilAnswers === 'undefined' || danilAnswers === null) {
                 danilAnswers = "";
             }
-            $reactions.answer("================");
-            $reactions.answer(danilAnswers);
-            $reactions.answer(typeof danilAnswers === 'underfined');
-            $reactions.answer(danilAnswers === "underfined");
         
             if (danilAnswers === "") {
                 $reactions.answer("Данил еще не успел ответить");
@@ -30,19 +26,12 @@ theme: /
                 $reactions.answer("Данил говорит");
                 $reactions.answer(danilAnswers);
             }
-        # GoogleSheets:
-        #     operationType = deleteRowOrColumn
-        #     integrationId = {{ $secrets.get("INTEGRATION_ID") }}
-        #     spreadsheetId = {{ $secrets.get("SPREADSHEET_ID") }}
-        #     sheetName = Лист1
-        #     body = [{"values": ["A"]}]
-        #     errorState = /GoogleSheetError
         GoogleSheets:
             operationType = writeDataToCells
             integrationId = {{ $secrets.get("INTEGRATION_ID") }}
             spreadsheetId = {{ $secrets.get("SPREADSHEET_ID") }}
             sheetName = Лист1
-            body = [{"values": ["{{$session.tmpSheetsValue}}"],"cell":"A1"}]
+            body = [{"values": [""],"cell":"A1"}]
             errorState = /AnswerToBabushka/Error
         
 
