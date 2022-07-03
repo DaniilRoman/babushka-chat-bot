@@ -4,28 +4,22 @@ theme: /
         q!: $regex</start>
         go!: /GetNewDataForBabushka
         
-    state: GetNewDataForBabushka
+    state: GetNewDataForBabushka || noContext = true
         event!: noMatch
-        
-        GoogleSheets:
-            operationType = readDataFromCells
-            integrationId = {{ $secrets.get("INTEGRATION_ID") }}
-            spreadsheetId = {{ $secrets.get("SPREADSHEET_ID") }}
-            sheetName = Лист1
-            body = [{"varName":"sayData","cell":"A1"}]
-            errorState = /GoogleSheetError
         script:
-            var danilAnswers = $session.sayData;
-            if (danilAnswers === "undefined" || typeof danilAnswers === 'undefined' || danilAnswers === null) {
-                danilAnswers = "";
-            }
+            var danilAnswers = $integration.googleSheets.readDataFromCells(
+                $secrets.get("INTEGRATION_ID"),
+                $secrets.get("SPREADSHEET_ID"),
+                "Лист1",
+                ["A1"]
+            );
         
-            if (danilAnswers === "") {
+            if (danilAnswers.length === 0) {
                 $reactions.answer("Данил еще не успел ответить");
             } else {
                 $reactions.answer("Данил говорит");
-                $reactions.answer(danilAnswers);
-                $session.sayData = "";
+                var answers = danilAnswers[0]["value"];
+                $reactions.answer(answers)
             }
         GoogleSheets:
             operationType = writeDataToCells
