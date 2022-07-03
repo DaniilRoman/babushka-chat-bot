@@ -23,29 +23,37 @@ theme: /
             $reactions.answer("Бабушка говорит: " + babushkaSay);
     
     state: AnswerToBabushka
-        state: Listen || noContext = true
+        state: Listen
             q: *
-            GoogleSheets:
-                operationType = readDataFromCells
-                integrationId = {{ $secrets.get("INTEGRATION_ID") }}
-                spreadsheetId = {{ $secrets.get("SPREADSHEET_ID") }}
-                sheetName = Лист1
-                body = [{"varName":"sayData","cell":"A1"}]
-                errorState = /AnswerToBabushka/Error
             script:
-                if ($session.sayData === "undefined" || typeof $session.sayData === 'undefined' || $session.sayData === null) {
-                    $session.sayData = ""
+                var answers = $integration.googleSheets.readDataFromCells(
+                    $secrets.get("INTEGRATION_ID"),
+                    $secrets.get("SPREADSHEET_ID"),
+                    "Лист1",
+                    ["A1"]
+                );
+            
+                if (answers.length === 0) {
+                    answers = ""
+                } else {
+                    answers = answers[0]["value"];
+                    answers = answers.substring(1, answers.length-1);
                 }
-                $session.tmpSheetsValue = $session.sayData + $request.query + ". ";
-            GoogleSheets:
-                operationType = writeDataToCells
-                integrationId = {{ $secrets.get("INTEGRATION_ID") }}
-                spreadsheetId = {{ $secrets.get("SPREADSHEET_ID") }}
-                sheetName = Лист1
-                body = [{"values": ["{{$session.tmpSheetsValue}}"],"cell":"A1"}]
-                errorState = /AnswerToBabushka/Error
-            script:
+                $reactions.answer("=== ANSWER ===");
+                $reactions.answer(answers);
+                
+                answers = answers + $request.query + ". ";
+
+            
+                $integration.googleSheets.writeDataToCells(
+                    $secrets.get("INTEGRATION_ID"),
+                    $secrets.get("SPREADSHEET_ID"),
+                    "Лист1",
+                    [{values: [answers], cell: "A1"}]
+                );    
+                
                 $reactions.answer("Отправлено");
+            go!: /Start
               
         state: Error
             a: Cannot interact with Google sheets
