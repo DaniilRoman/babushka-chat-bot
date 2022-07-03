@@ -42,8 +42,8 @@ theme: /
                 integrationId = {{ $secrets.get("INTEGRATION_ID") }}
                 spreadsheetId = {{ $secrets.get("SPREADSHEET_ID") }}
                 sheetName = Лист1
-                body = [{"values": "{{$session.tmpSheetsValue}}","cell":"A1"}]
-                errorState = /AnswerToBabushka/Error1
+                body = [{"values": ["{{$session.tmpSheetsValue}}","cell":"A1"}]
+                errorState = /AnswerToBabushka/Error
             script:
                 $reactions.answer("Отправлено");
               
