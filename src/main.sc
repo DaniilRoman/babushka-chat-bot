@@ -33,7 +33,9 @@ theme: /
                 body = [{"varName":"sayData","cell":"A1"}]
                 errorState = /AnswerToBabushka/Error
             script:
-                $reactions.answer($session.sayData);
+                if ($session.sayData === "underfined" || typeof $session.sayData === 'underfined' || $session.sayData === null) {
+                    $session.sayData = ""
+                }
                 $session.tmpSheetsValue = $session.sayData + $request.query + ". ";
             GoogleSheets:
                 operationType = writeDataToCells
