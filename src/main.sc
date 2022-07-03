@@ -32,7 +32,7 @@ theme: /
             spreadsheetId = {{ $secrets.get("SPREADSHEET_ID") }}
             sheetName = Лист1
             body = [{"values": [""],"cell":"A1"}]
-            errorState = /AnswerToBabushka/Error
+            errorState = /GoogleSheetError
         
 
     state: GoogleSheetError
