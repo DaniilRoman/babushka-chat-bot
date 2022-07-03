@@ -23,7 +23,7 @@ theme: /
             $reactions.answer("Бабушка говорит: " + babushkaSay);
     
     state: AnswerToBabushka
-        state: Listen
+        state: Listen || noContext = true
             q: *
             GoogleSheets:
                 operationType = readDataFromCells
