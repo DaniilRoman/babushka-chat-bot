@@ -39,9 +39,6 @@ theme: /
                     answers = answers[0]["value"];
                     answers = answers.substring(1, answers.length-1);
                 }
-                $reactions.answer("=== ANSWER ===");
-                $reactions.answer(answers);
-                
                 answers = answers + $request.query + ". ";
 
             
