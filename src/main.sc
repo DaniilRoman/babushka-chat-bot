@@ -26,16 +26,8 @@ theme: /
                 $secrets.get("INTEGRATION_ID"),
                 $secrets.get("SPREADSHEET_ID"),
                 "Лист1",
-                [{values: ["Николаевич", "78121770707"], cell: "C4"}]
+                [{values: [""], cell: "A1"}]
             );
-            
-        GoogleSheets:
-            operationType = writeDataToCells
-            integrationId = {{ $secrets.get("INTEGRATION_ID") }}
-            spreadsheetId = {{ $secrets.get("SPREADSHEET_ID") }}
-            sheetName = Лист1
-            body = [{"values": [""],"cell":"A1"}]
-            errorState = /GoogleSheetError
         
 
     state: GoogleSheetError
