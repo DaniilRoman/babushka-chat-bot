@@ -1,4 +1,4 @@
-### Bot to chat with my old grandma.
+### Bot to chat with my old grandma. The project based on [low code conversational platform](https://just-ai.com/en/platform)
 It's a Yandex Alisa to Telegram bridge.<br>
 Using Yandex Alisa my grandma can ask Alisa to send me a message and Alisa'll send it to my telegram.<br> 
 Then I'll answer and that data will saved in google sheets.<br> 
