@@ -10,8 +10,8 @@ This bot splited on 3 bots.
 3. second `Alisa bot` read messages from `Google sheets`
 
 Bot sources:
-1. Telegram bot located in `branch tlgrm`
-2. Alisa bot to send messages located in `branch alisa-send`
-3. Alisa bot to read messages from Google sheets located in `branch alisa-read`
+1. Telegram bot located in [telegram](./telegram) folder
+2. Alisa bot to send messages to telegram located in [alisa-send](./alisa-send) folder
+3. Alisa bot to read messages from Google sheets located in [alisa-read](./alisa-read) folder
 
 ![image](./files/arch.png)
