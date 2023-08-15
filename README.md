@@ -1,5 +1,5 @@
 ### Serverless bot to chat with my old grandma.
-It's a Yandex Alisa to Telegram bridge. The project based on [low code conversational platform](https://just-ai.com/en/platform).<br>
+It's a Yandex Alisa to Telegram bridge. The project based on [low code conversational platform](https://tovie.ai/tovie-platform).<br>
 Using Yandex Alisa my grandma can ask Alisa to send me a message and Alisa'll send it to my telegram.<br> 
 Then I'll answer and that data will saved in google sheets.<br> 
 And my grandma have to reask Alisa to read message. Unfortunatlly Alisa can't notify her.
