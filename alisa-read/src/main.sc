@@ -20,14 +20,14 @@ theme: /
                 $reactions.answer("Данил говорит");
                 var answers = danilAnswers[0]["value"];
                 $reactions.answer(answers)
+
+                $integration.googleSheets.writeDataToCells(
+                    $secrets.get("INTEGRATION_ID"),
+                    $secrets.get("SPREADSHEET_ID"),
+                    "Лист1",
+                    [{values: [""], cell: "A1"}]
+                );
             }
-            
-            $integration.googleSheets.writeDataToCells(
-                $secrets.get("INTEGRATION_ID"),
-                $secrets.get("SPREADSHEET_ID"),
-                "Лист1",
-                [{values: [""], cell: "A1"}]
-            );
         
 
     state: GoogleSheetError
