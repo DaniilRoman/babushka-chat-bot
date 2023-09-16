@@ -15,3 +15,5 @@ Bot sources:
 3. Alisa bot to read messages from Google sheets located in [alisa-read](./alisa-read) folder
 
 ![image](./files/arch.png)
+
+You can find the story behind this repo [here](https://dev.to/daniilroman/would-your-grandma-use-a-voice-chat-bot-hca)
